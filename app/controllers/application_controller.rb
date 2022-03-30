@@ -5,5 +5,50 @@ class ApplicationController < Sinatra::Base
     get "/" do
       { message: "the world" }.to_json
     end
+
+    #users information
+    get '/users' do
+      User.all.to_json
+    end
+
+    get '/users/:id' do
+     usersLoc= User.find(params[:id] )
+     usersLoc.to_json(include: :location)
+    end
+
+    post '/users/:id' do
+      newUder=User.create( name: params[:name] )
+      newUder.to_json
+    end
+
+    delete '/users/:id' do
+
+      remove=User.find( params[:id])
+      remove.destroy
+      remove.to_json
+    end
+
+
+
+
+#location information
+    get '/locations' do
+      Location.all.to_json
+    end
+
+    get '/locations/:id' do
+      Location.find(params[:id]).to_json
+    end
+    
+    post '/locations/:id' do
+      newLocation= Location.create(name:params[:name])
+    end
+
+    delete '/locations/:id' do
+
+      remove= Location.find(params[:id])
+      remove.destroy
+      remove.to_json
+    end
   
   end
