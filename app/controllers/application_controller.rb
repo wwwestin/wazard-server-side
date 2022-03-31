@@ -8,7 +8,11 @@ class ApplicationController < Sinatra::Base
 
     #users information
     get '/users' do
-      User.all.to_json
+      User.all.to_json(only: [:id, :name], include: {
+        locations: {only: [:title]
+        }
+      })
+
     end
 
     get '/users/:id' do
@@ -17,8 +21,8 @@ class ApplicationController < Sinatra::Base
     end
 
     post '/users/:id' do
-      newUder=User.create( name: params[:name] )
-      newUder.to_json
+      newUser=User.create( name: params[:name] )
+      newUser.to_json
     end
 
     delete '/users/:id' do
