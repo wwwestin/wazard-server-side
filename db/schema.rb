@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2022_03_29_195018) do
 
   create_table "locations", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
   end
 
   create_table "trips", force: :cascade do |t|

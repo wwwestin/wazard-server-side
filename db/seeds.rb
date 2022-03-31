@@ -9,7 +9,7 @@ end
 puts "location"
 
 10.times do 
-    Location.create(name: Faker::Address.country)
+    Location.create(title: Faker::Address.country)
 end
 
 puts "trips"

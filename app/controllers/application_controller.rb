@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
 
     get '/users/:id' do
      usersLoc= User.find(params[:id] )
-     usersLoc.to_json(include: :location)
+     usersLoc.to_json(include: :location[:title])
     end
 
     post '/users/:id' do
@@ -41,7 +41,7 @@ class ApplicationController < Sinatra::Base
     end
     
     post '/locations/:id' do
-      newLocation= Location.create(name:params[:name])
+      newLocation= Location.create(title:params[:title])
     end
 
     delete '/locations/:id' do
