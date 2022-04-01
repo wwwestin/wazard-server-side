@@ -9,7 +9,7 @@ class ApplicationController < Sinatra::Base
     #users information
     get '/users' do
       User.all.to_json(only: [:id, :name], include: {
-        locations: {only: [:title]
+        locations: {only: [:id, :title]
         }
       })
 
@@ -20,8 +20,8 @@ class ApplicationController < Sinatra::Base
      usersLoc.to_json(include: :location[:title])
     end
 
-    post '/users/:id' do
-      newUser=User.create( name: params[:name] )
+    post '/users' do
+      newUser=User.create(name: params[:name] )
       newUser.to_json
     end
 
@@ -44,7 +44,7 @@ class ApplicationController < Sinatra::Base
       Location.find(params[:id]).to_json
     end
     
-    post '/locations/:id' do
+    post '/locations' do
       newLocation= Location.create(title:params[:title])
     end
 
